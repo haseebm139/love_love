@@ -10,7 +10,6 @@ use App\Models\EmployeeInventory;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
-use Session;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -49,9 +48,6 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-
-          # code...
-
        $data = User::orderBy('id','DESC')->where('id','!=',auth()->user()->id)->get();
         return view('admin.user.view_user',compact('data'));
     }

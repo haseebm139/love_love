@@ -39,15 +39,16 @@ Route::controller(HomeController::class)->group(function () {
      Route::get('medical_condion','medicalCondition')->name('medicalCondition');
      Route::get('intrest','intrest')->name('intrest');
      Route::get('account_for','accountFor')->name('accountFor');
+     
 });
 
 // Route::get('filter1',[UserController::class,'filter'])->name('filter1');
 
-Route::middleware(['auth:api','sessions','web'])->group(function () {
+Route::middleware(['auth:api'])->group(function () {
     Route::post('add_spam',[AdminController::class,'addSpam'])->name('add.spam');
     Route::get('admin-details', [AdminController::class,'AdminInfo'])->name('admin.info');
     Route::controller(UserController::class)->group(function () {
-
+            Route::get('notifications','notification')->name('notification');
             Route::get('filter','filter')->name('filter');
             Route::post('profile','updateProfile')->name('update-profile');
             Route::post('change-password','changePassword')->name('change-password');
@@ -72,19 +73,19 @@ Route::middleware(['auth:api','sessions','web'])->group(function () {
             Route::get('get-content','getContent')->name('content');
             Route::post('add/disappear','addDisappear')->name('add.disappear');
             Route::post('del-image','delImage')->name('del.image');
-
-
+            
+            
         });
-
+    
     // Admin
     Route::controller(AdminController::class)->group(function () {
-
-        Route::get('notifications','notification')->name('notification');
+        
+        Route::get('admin-notifications','notification')->name('notification');
         Route::get('admin/profile/request','profileReq')->name('admin.profile.req');
         Route::post('admin/profile/accept-profile','acceptProfile')->name('admin.accept.profile');
     });
 
-    Route::post('payment',[PaymentController::class,'createPayment'])->name('admin.profile.req');
+    Route::post('payment',[PaymentController::class,'createPayment'])->name('admin.profile.req'); 
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

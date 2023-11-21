@@ -56,7 +56,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'asset_url' => env('ASSET_URL', ''),
+    'asset_url' => env('ASSET_URL'),
 
     /*
     |--------------------------------------------------------------------------
@@ -185,6 +185,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         Stevebauman\Location\LocationServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        
 
         /*
          * Package Service Providers...
@@ -198,7 +199,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Kreait\Laravel\Firebase\ServiceProvider::class
+        // Kreait\Laravel\Firebase\ServiceProvider::class
 
     ],
 
@@ -214,8 +215,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        // 'ExampleClass' => App\Example\ExampleClass::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Location' => Stevebauman\Location\Facades\Location::class,
     ])->toArray(),

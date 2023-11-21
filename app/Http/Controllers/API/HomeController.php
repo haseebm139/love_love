@@ -48,7 +48,7 @@ class HomeController extends Controller
 
     }
     function accountFor() {
-        $data  = AccountFor::select('id','name')->get();
+        $data  = AccountFor::where('name','!=','Yourself')->select('id','name')->get();
         return response()->json([
 	            'success' => true,
 	            'data' 	  => $data,

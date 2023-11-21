@@ -43,7 +43,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->tinyInteger('is_block')->nullable()->default(0);
             $table->integer('forget_password_code')->nullable();
-            $table->string('role_id')->nullable()->default('user');
+            $table->string('role_id')->nullable()->default('user'); 
             $table->rememberToken();
             $table->timestamps();
         });

@@ -29,9 +29,18 @@ use App\Http\Controllers\Admin\SupportController;
 */
 
 
-        // Route::any('/', function () {
-        //     return view('welcome');
-        // });
+        Route::any('send-email', function () {
+            $details = [
+                'title' => 'Mail from Love Love',
+                'code' => 1234
+                ]; 
+                $email = 'rajabarath39@gmail.com';
+                Mail::send('emails.code', $details, function($message) use ($email) {
+                  $message->to($email, 'Verification Code From Love Love')->subject
+                      ('You have recieved Verification Code');
+                  $message->from('info@customdemowebsites.com','Verification Code');
+                });
+        });
 
 
 
@@ -42,7 +51,7 @@ use App\Http\Controllers\Admin\SupportController;
 
 
         Auth::routes(['verify' => true]);
-        route::get('/',[AdminController::class,'user_login'])->name('user-login');
+        route::get('/',[AdminController::class,'user_login'])->name('user-login')->middleware('guest');
 
         route::post('loginAdminProcess',[AdminController::class,'loginAdminProcess'])->name('loginAdminProcess');
 

@@ -47,6 +47,7 @@ class AdminController extends Controller
     public function user_login(Request $request)
     {
         // return view('admin/login');
+        
         if(Auth::check()){
             return redirect()->route('users.management');
         }else{
@@ -62,8 +63,8 @@ class AdminController extends Controller
 
     public function loginAdminProcess(Request $request)
     {
-
-        if (Auth::attempt(array('email' => $request->email, 'password' => $request->password)))
+       
+        if (Auth::attempt(array('email' => $request->email, 'password' => $request->password,'type'=>'admin')))
         {
             return redirect()->route('users.management')->with(array('message'=>'Login success','type'=>'success'));
 

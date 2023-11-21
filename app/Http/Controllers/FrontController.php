@@ -31,6 +31,7 @@ class FrontController extends Controller
       
     public function forgotPassword(Request $request)
     {
+         
         if($request->has("email")){
             $user = User::where('email',$request->email)->get()->first();
             if($user){
